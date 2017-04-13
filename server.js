@@ -46,23 +46,23 @@ app.get('/api', function apiIndex(req, res) {
   // TODO: Document all your api endpoints below as a simple hardcoded JSON object.
   // It would be seriously overkill to save any of this to your database.
   res.json({
-    woopsIForgotToDocumentAllMyEndpoints: false, // changed
+    woopsIForgotToDocumentAllMyEndpoints: false, 
     message: "Welcome to Kevin Tse's Personal API! Here's what you need to know!",
-    documentationUrl: "https://github.com/kwadrnt/express-personal-api/blob/master/README.md", // changed
-    baseUrl: "https://dry-earth-98097.herokuapp.com/", // changed
+    documentationUrl: "https://github.com/kwadrnt/express-personal-api/blob/master/README.md", 
+    baseUrl: "https://dry-earth-98097.herokuapp.com/", 
     endpoints: [
       {method: "GET", path: "/api", description: "Describes all available endpoints"},
-      {method: "GET", path: "/api/profile", description: "Profile Data about Me"}, // CHANGE ME
+      {method: "GET", path: "/api/profile", description: "Profile Data about Me"}, 
       // Gets all nba stadiums (INDEX)
-      {method: "GET", path: "/api/nbastadiums", description: "NBA stadiums I visited"},
-      // POST route
-      {method: "POST", path: "/api/nbastadiums", description: "Create a new stadium visited"}, // CHANGE ME
-      // GET one stadium at a time (SHOW)
-      {method: "GET", path: "/api/nbastadiums/:id", description: "Get one stadium"}
-      // PUT
-      {method: "PUT", path: "/api/nbastadiums", description: "Update a stadium visited"},
-      // DELETE
-      {method: "DELETE", path: "/api/nbastadiums/:id", description: "Delete a stadium visited"},
+      {method: "GET", path: "/api/nbastadiums", description: "NBA stadiums I visited"}
+      // // POST route
+      // {method: "POST", path: "/api/nbastadiums", description: "Create a new stadium visited"},
+      // // GET one stadium at a time (SHOW)
+      // {method: "GET", path: "/api/nbastadiums/:id", description: "Get one stadium"},
+      // // PUT
+      // {method: "PUT", path: "/api/nbastadiums", description: "Update a stadium visited"},
+      // // DELETE
+      // {method: "DELETE", path: "/api/nbastadiums/:id", description: "Delete a stadium visited"}
     ]
   })
 });
