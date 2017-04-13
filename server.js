@@ -53,7 +53,16 @@ app.get('/api', function apiIndex(req, res) {
     endpoints: [
       {method: "GET", path: "/api", description: "Describes all available endpoints"},
       {method: "GET", path: "/api/profile", description: "Profile Data about Me"}, // CHANGE ME
-      {method: "GET", path: "/api/nbastadiums", description: "NBA stadiums I visited"} // CHANGE ME
+      // Gets all nba stadiums (INDEX)
+      {method: "GET", path: "/api/nbastadiums", description: "NBA stadiums I visited"},
+      // POST route
+      {method: "POST", path: "/api/nbastadiums", description: "Create a new stadium visited"}, // CHANGE ME
+      // GET one stadium at a time (SHOW)
+      {method: "GET", path: "/api/nbastadiums/:id", description: "Get one stadium"}
+      // PUT
+      {method: "PUT", path: "/api/nbastadiums", description: "Update a stadium visited"},
+      // DELETE
+      {method: "DELETE", path: "/api/nbastadiums/:id", description: "Delete a stadium visited"},
     ]
   })
 });
