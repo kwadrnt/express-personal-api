@@ -46,15 +46,57 @@ app.get('/api', function apiIndex(req, res) {
   // TODO: Document all your api endpoints below as a simple hardcoded JSON object.
   // It would be seriously overkill to save any of this to your database.
   res.json({
-    woopsIForgotToDocumentAllMyEndpoints: true, // CHANGE ME ;)
-    message: "Welcome to my personal api! Here's what you need to know!",
-    documentationUrl: "https://github.com/example-username/express-personal-api/README.md", // CHANGE ME
-    baseUrl: "http://YOUR-APP-NAME.herokuapp.com", // CHANGE ME
+    woopsIForgotToDocumentAllMyEndpoints: false, // changed
+    message: "Welcome to Kevin Tse's Personal API! Here's what you need to know!",
+    documentationUrl: "https://github.com/kwadrnt/express-personal-api/blob/master/README.md", // changed
+    baseUrl: "https://dry-earth-98097.herokuapp.com/", // changed
     endpoints: [
       {method: "GET", path: "/api", description: "Describes all available endpoints"},
-      {method: "GET", path: "/api/profile", description: "Data about me"}, // CHANGE ME
-      {method: "POST", path: "/api/campsites", description: "E.g. Create a new campsite"} // CHANGE ME
+      {method: "GET", path: "/api/profile", description: "Profile Data about Me"}, // CHANGE ME
+      {method: "GET", path: "/api/nbastadiums", description: "NBA stadiums I visited"} // CHANGE ME
     ]
+  })
+});
+
+app.get('/api/profile', function apiIndex(req, res) {
+  // TODO: Document all your api endpoints below as a simple hardcoded JSON object.
+  // It would be seriously overkill to save any of this to your database.
+  res.json({
+    name: "Kevin Tse",
+    githubUsername: "kwadrnt",
+    githubLink: "https://github.com/kwadrnt",
+    githubProfileImage: "https://avatars3.githubusercontent.com/u/20493178?v=3&u=7a2a2797c82ff865a845f17e4bbd3610e142a502&s=400",
+    personalSiteLink: "http://kevinbuilt.com/",
+    currentCity: "San Francisco",
+    pets: [{
+      name: "fayfay",
+      type: "dog",
+      breed: "Pekingnese"
+    },
+    {
+      name: "dongdong",
+      type: "dog",
+      breed: "Pekingnese"
+    }]
+  })
+});
+
+app.get('/api/nbastadiums', function apiIndex(req, res) {
+  // TODO: Document all your api endpoints below as a simple hardcoded JSON object.
+  // It would be seriously overkill to save any of this to your database.
+  res.json({
+    nbaStadiums: [{
+      name: "Staples Center",
+      locaton: "Los Angeles",
+      imageURL: "https://www.suiteexperiencegroup.com/wp-content/uploads/2014/02/Staples-Center-at-night.jpg",
+      visited: true,  
+    },
+    {
+      name: "Barclays Center",
+      locaton: "Brooklyn",
+      imageURL: "http://www.barclayscenter.com/assets/img/about-1170x450-d9c047de75.jpg",
+      visited: true,
+    }]
   })
 });
 
