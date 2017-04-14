@@ -29,6 +29,19 @@ app.use(function(req, res, next) {
 // i.e. `/images`, `/scripts`, `/styles`
 app.use(express.static('public'));
 
+// custom middleware to console.log some helpful information
+//   in terminal every time we get a request
+function logRequestInfo(req, res, next){
+  console.log(`\nRECEIVED REQUEST : ${req.method} ${req.url}`);
+  console.log('query params:', req.query);
+  console.log('body:', req.body);
+  // request url parameters haven't been decided yet
+  //  so we'll have to log them inside any routes where
+  //  we want to use them
+  next();
+}
+app.use(logRequestInfo);
+
 /*
  * HTML Endpoints
  */
@@ -60,13 +73,14 @@ app.get('/api', function apiIndex(req, res) {
       // GET one stadium at a time (SHOW)
       {method: "GET", path: "/api/nbastadiums/:id", description: "Get one stadium"},
       // PUT
-      {method: "PUT", path: "/api/nbastadiums", description: "Update one stadium visited"},
+      {method: "PUT", path: "/api/nbastadiums/:id", description: "Update one stadium visited"},
       // DELETE
       {method: "DELETE", path: "/api/nbastadiums/:id", description: "Delete a stadium visited"}
     ]
   })
 });
 
+// get all api/profile data
 app.get('/api/profile', function apiIndex(req, res) {
   // TODO: Document all your api endpoints below as a simple hardcoded JSON object.
   // It would be seriously overkill to save any of this to your database.
@@ -90,25 +104,63 @@ app.get('/api/profile', function apiIndex(req, res) {
   })
 });
 
+// get all api/nbastadiums data
 app.get('/api/nbastadiums', function apiIndex(req, res) {
   // TODO: Document all your api endpoints below as a simple hardcoded JSON object.
   // It would be seriously overkill to save any of this to your database.
   res.json({
     nbaStadiums: [{
+      _id: 1,
       name: "Staples Center",
       locaton: "Los Angeles",
       imageURL: "https://www.suiteexperiencegroup.com/wp-content/uploads/2014/02/Staples-Center-at-night.jpg",
       visited: true,  
     },
     {
+      _id: 2,
       name: "Barclays Center",
       locaton: "Brooklyn",
       imageURL: "http://www.barclayscenter.com/assets/img/about-1170x450-d9c047de75.jpg",
+      visited: true,
+    },
+    {
+      _id: 3,
+      name: "United Center",
+      locaton: "Chicago",
+      imageURL: "https://cdn3.vox-cdn.com/uploads/chorus_asset/file/4601851/Screen_20Shot_202015-03-30_20at_2011.20.01_20AM.0.png",
       visited: true,
     }]
   })
 });
 
+// get one nbastadium
+app.get('/api/nbastadiums/:id', function apiShow(req, res) {
+  // TODO: Document all your api endpoints below as a simple hardcoded JSON object.
+  // It would be seriously overkill to save any of this to your database.
+  res.json({
+    nbaStadiums: [{
+      _id: 1,
+      name: "Staples Center",
+      locaton: "Los Angeles",
+      imageURL: "https://www.suiteexperiencegroup.com/wp-content/uploads/2014/02/Staples-Center-at-night.jpg",
+      visited: true,  
+    },
+    {
+      _id: 2,
+      name: "Barclays Center",
+      locaton: "Brooklyn",
+      imageURL: "http://www.barclayscenter.com/assets/img/about-1170x450-d9c047de75.jpg",
+      visited: true,
+    },
+    {
+      _id: 3,
+      name: "United Center",
+      locaton: "Chicago",
+      imageURL: "https://cdn3.vox-cdn.com/uploads/chorus_asset/file/4601851/Screen_20Shot_202015-03-30_20at_2011.20.01_20AM.0.png",
+      visited: true,
+    }]
+  })
+});
 /**********
  * SERVER *
  **********/
